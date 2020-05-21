@@ -22,6 +22,7 @@
 	$(function() {
 		alert("jQuery 시작하기4");
 	});
+
 </script>
 </head>
 <body>

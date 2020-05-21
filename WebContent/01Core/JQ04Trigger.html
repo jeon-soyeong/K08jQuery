@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ04Trigger.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            /*
+            사용자가 해당 버튼을 클릭할 때 발생되는 이벤트 호출
+            */
+            $('#btnClick').bind("click", function() {
+                alert("버튼을 클릭하셨습니다.");
+            });
+            /*
+            페이지가 로딩될 때 자동으로 click이벤트를 실행한다.
+            즉 페이지 로딩시 click이벤트를 trigger한다.
+            */
+            $('#btnClick').trigger('click');
+        });
+    </script>
+</head>
+<body>
+    <h2>trigger() 메소드</h2>
+
+    <button id="btnClick">난버튼</button>
+</body>
+</html>

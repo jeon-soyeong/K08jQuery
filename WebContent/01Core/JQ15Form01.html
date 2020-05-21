@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ15Form01.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(function() {
+            $('#submit').click(function() {
+                
+                var f = document.getElementById("sForm");
+                if(f.user_id==""){
+                    alert("아이디를 입력하세요");
+                    return false;
+                }
+                if(f.user_pw==""){
+                    alert("패스워드를 입력하세요");
+                    return false;
+                }
+                $('#sForm').attr('method', 'post')
+                    .attr('action', 'http://ikosmo.co.kr')
+                    .attr('target', 'subTarget');
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>jQuery를 통해 폼값 전송하기</h2>
+	
+	<form id="sForm">
+		아이디 : <input type="text" name="user_id"/>
+		<br />
+		패스워드 : <input type="password" name="user_pw" />
+		<br />
+		<button type="submit" id="submit">로긴하기</button>
+	</form>
+	
+	<iframe name="subTarget" frameborder="1"
+		style="border:2px solid #000000; width:500px;
+		height:300px;"></iframe>
+</body>
+</html>

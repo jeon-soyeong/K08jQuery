@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ03Bind.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        /*
+        bind() :  이벤트를 여러개 연결할 때 사용하는 메소드
+        unbind() : 이벤트를 해제할 때 사용하는 메소드
+        ※주로 메서드 체인 형태로 사용해서 여러개의 이벤트를
+        연결할 수 있다.
+        */
+        $(document).ready(function() {
+            $('#click_change')
+                .bind("mouseover", function() {
+                    //JS의 함수를 이용해서 배경색 변경
+                    document.getElementById("click_change").style.backgroundColor = "red";
+                })
+                .bind("mouseout", function() {
+                    //jQuery get()메소드를 통해 요소를 선택하고 배경색 변경
+                    $(this).get(0).style.backgroundColor = "white";
+                    //$(this).css("backgroundColor","white");
+                })
+                .bind("click", function() {
+                    //text() : JS의 innerText와 같은 역할의 메소드
+                    alert($(this).text());
+                });
+            $('#btnClick').click(function() {
+                alert("버튼 클릭됨");
+            });
+
+            /*
+            해당 코드가 실행되면 #btnClick를 눌러도
+            아무런 반응이 없게된다. 즉 click이벤트가
+            제거된다.
+            */
+            $('#btnEventClear').bind('click', function() {
+                $('#btnClick').unbind('click');
+                alert("#btnClick의 이벤트가 제거됨");
+            });
+        });
+    </script>
+    <style>
+        div{
+            width:500px; height:130px;
+            text-align:center; font-size:1.5em;
+            border:1px dotted black;
+        }
+        input{ width:200px; height:100px; margin-top:20px;}
+    </style>
+</head>
+<body>
+    <h2>bind() 메소드</h2>	
+	<div id="click_change">
+		마우스를 over하면 red로 변하고 <br />
+		마우스를 out하면 white로 변하고 <br />
+		마우스를 click하면 여기 내용이
+		경고창(alert)으로 뜬데요~
+	</div>
+
+	<h2>unbind() 메소드</h2>
+	
+	<input type="button" id="btnClick" value="난버튼" />
+	
+	<input type="button" id="btnEventClear" 
+		value="이벤트제거버튼" />
+
+</body>
+</html>

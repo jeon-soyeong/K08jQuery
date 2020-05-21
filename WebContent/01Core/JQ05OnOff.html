@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ05OnOff.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            
+            /*
+            on() : 기본사용법은 bind()와 동일하며 엘리먼트에 이벤트를 
+                부여할 수 있다.
+            off() : on()으로 부여한 이벤트를 제거하는 역할을 한다.
+            */
+            $('#onMethod').on("click", function() {
+                alert("#onMethod 버튼이 클릭되었습니다.");
+            });
+
+            $('#offMethod').on("click", function() {
+                $('#onMethod').off("click");
+                alert("#onMethod의 click이벤트가 해제되었습니다.");
+            });
+
+            /*
+            after() : 선택된 요소 다음 부분에 인자로 전달되는 컨텐츠를
+                추가한다.
+            */
+            $('#div1').on('click', function() {
+                alert("click이벤트 발생됨");
+                /*
+                    #div1을 선택한 후 on()으로 실행부를 구성하고 있으므로
+                    $(this)는 현재 선택된 #div1요소를 가리킨다.
+                */
+                $(this).after("<div style = 'background-color:green;'>동적으로 생성한 div</div>");
+            });
+            
+            /*
+            append() : after()와 동일하게 선택된 요소 다음 부분에 컨텐츠를 추가한다.
+            css() : JS의 style.속성='값' 과 동일하게 해당 요소에 CSS효과를 부여한다.
+
+            동적으로 생성한(즉, 코드상으로 존재하지 않는 엘리먼트) div에는
+            click이벤트를 bind()할 수 없다. 
+            하지만 on() 메소드를 통해서는 이벤트를 부여할 수 있다.
+            */
+            $(".div2 button").on("click", function() {
+                $(".div2 ul").append("<li>추가된 li태그</li>");
+            });
+
+            $(".div2").on("click","li", function() {
+                $(this).css("color", "red").css("fontSize", "1.8em");
+            });
+        });
+    </script>
+    <style>
+        div{
+            width: 200px; height: 50px; margin:20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>on() / off() 메소드</h2>
+	
+	<div id="div1" style="background-color:red;">
+		미리 생성한 div(요기를 눌러보삼)
+	</div>
+	
+	<button id="onMethod">on()메소드호출</button>
+	<button id="offMethod">off()메소드호출</button>
+	
+	<div class="div2">
+		<button>아이템추가하기</button>
+		<ul>
+			<li>기존아이템1</li>
+			<li>기존아이템2</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ13Each.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        /*
+        each()
+            : 선택자를 통해 가져온 jQuery의 개체수만큼 반복해주는 메소드.
+            반복할 때 index는 0부터 자동으로 증가하고 필요없는
+            경우에는 생략가능하다.
+        attr()
+            : DOM요소의 속성에 속성값을 부여하거나 속성을 읽어올 때 
+            사용하는 메소드. 아래코드는 id속성과 style속성을
+            부여하고 있다.
+        */
+        $(function() {
+            $('#btn1').click(function() {
+                $('div').each(function(index) {
+                    $(this).attr({'id':'div'+index, style:'border:1px solid red; width:100px; height:100px'
+                    });
+                });
+            });
+
+            $('#btn2').click(function() {
+                alert($('#div1').text());
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>each() 메소드</h2>
+	
+	<div>index:0 -> div1</div>
+	<div>index:1 -> div2</div>
+	<div>index:2 -> div3</div>
+	
+	<button id="btn1">div에 style적용하기</button>
+	<button id="btn2">index1의 text()</button>
+</body>
+</html>

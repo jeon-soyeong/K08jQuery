@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ10SlideUpDown.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(function() {
+            //문서의 로드가 끝난 직후 
+            //내용부분을 숨김처리
+            $('.content').hide();
+
+            //제목부분의 스타일을 변경 : 글자크기 : 1.5배 커서모양 : 손가락
+            $('.title').css('fontSize','1.5em').css('cursor','pointer');
+
+            /*
+            slideToggle(시간) : 해당 시간만큼 슬라이드 업/다운이
+                토글되면서 적용됨
+            slideUp(시간) : 해당 시간만큼 패널이 닫히는 효과
+            slideDown(시간) : 해당 시간만큼 패널이 열리는 효과
+            (시간) - slow, nomal, fast, 1000 다 가능
+            */
+            $('.title').click(function() {
+                $(this).next().slideToggle(1000);
+            });
+            $('.s_up').click(function() {
+                $('#panel').slideUp("slow");
+            });
+            $('.s_down').click(function() {
+                $('#panel').slideDown("fast");
+            });
+        });
+    </script>
+    <style>
+        div{
+            margin:10px;
+        }
+        #panel, #flip{
+            padding:5px; text-align: center;
+            background-color: #e5eecc;
+            border: 1px solid #c3c3c3;
+        }
+        #panel{
+            padding:50px;
+        }
+        .title{background-color: #ff99ff;}
+        .content{background-color: #ffff33;}
+    </style>
+</head>
+<body>
+    <h2>slideUp() / slideDown() / slideToggle() 메소드</h2>
+	
+	<div class="title">
+		제목1입니다.
+	</div>
+	<div class="content">
+		내용1입니다.<br/>
+		내용1입니다.<br/>
+		내용1입니다.<br/>
+		내용1입니다.<br/>
+	</div>	
+	
+	<div class="title">
+		제목2입니다.
+	</div>
+	<div class="content">
+		내용2입니다.<br/>
+		내용2입니다.<br/>
+		내용2입니다.<br/>
+		내용2입니다.<br/>
+	</div>
+	
+	<div class="title">
+		제목3입니다.
+	</div>
+	<div class="content">
+		내용3입니다.<br/>
+		내용3입니다.<br/>
+		내용3입니다.<br/>
+		내용3입니다.<br/>
+	</div>
+	
+	<div id="flip">
+		<button class="s_up">slideup()메소드</button>
+		<button class="s_down">slidedown()메소드</button>
+	</div>
+	<div id="panel">
+		Hello Panel...!!! <br />
+		Hello Panel...!!! <br />
+		Hello Panel...!!! <br />
+		Hello Panel...!!! <br />
+	</div>
+
+</body>
+</html>

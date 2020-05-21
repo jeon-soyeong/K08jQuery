@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ08ShowHide.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(function() {
+            /*
+            toggle() : 보임/숨김 처리가 번갈아가면서 진행된다.
+            show() : 엘리먼트가 보임처리된다.
+            hide() : 엘리먼트가 숨김처리된다.
+            ※메소드의 인자로 1/1000초 단위의 시간을 주게되면
+            해당 시간만큼 애니메이션 효과가 적용된다.
+            */
+            $('#title').hide(2000);
+            $('#content').hide(2000);
+
+            $('#btn1').click(function() {
+                $('#title').toggle();
+            });
+            $('#btn1_s').click(function() {
+                $('#title').show();
+            });
+            $('#btn1_h').click(function() {
+                $('#title').hide(1000);
+            });
+            $('#btn2').click(function() {
+                $('#content').toggle();
+            });
+            $('#btn2_s').click(function() {
+                $('#content').show(2000);
+            });
+            $('#btn2_h').click(function() {
+                $('#content').hide(1000);
+            });
+        });
+    </script>
+    <style>
+        #title{
+            border:1px solid red; width:300px; height:50px;
+            color:red;
+        }
+        #content{
+            border:1px solid blue; width:300px; height:300px;
+            color:blue;
+        }
+    </style>    
+</head>
+<body>
+    <h2>show() / hide() / toggle()</h2>
+	
+	<div>
+		<button id="btn1">제목토글</button>
+		<button id="btn1_s">제목보임</button>
+		<button id="btn1_h">제목숨김</button>
+		
+		<button id="btn2">내용토글</button>
+		<button id="btn2_s">내용보임</button>
+		<button id="btn2_h">내용숨김</button>
+	</div>
+	
+	<div id="title">기사 제목 부분입니다.</div>
+	<div id="content">
+		기사 내용 부분입니다 <br />
+		기사 내용 부분입니다 <br />
+		기사 내용 부분입니다 <br />
+		기사 내용 부분입니다 <br />
+		기사 내용 부분입니다 <br />
+		기사 내용 부분입니다 <br />
+		기사 내용 부분입니다 <br />
+		기사 내용 부분입니다 <br />
+	</div>
+</body>
+</html>

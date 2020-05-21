@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ12Animate.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(function() {
+            /*
+            animate(효과, 시간)
+                인자1 : 효과의 경우에는 여러가지를 동시에 부여해야
+                    하므로 JSON형태를 사용한다.
+                인자2 : 시간은 초단위 혹은 slow, fast, normal을
+                    사용한다. 
+            */
+            $('#go').click(function() {
+                $('div').animate({
+                    'left':'+=100px',
+                    opacity:0.2,
+                    height:'+=10px'}, 'slow');
+            });
+            $('#stop').click(function() {
+                $('div').stop();
+            });
+            $('#back').click(function() {
+                $('div').animate(
+                    {left:'-=100px', opacity:1, height:'-=10px'}, '2000'
+                );
+            });
+            /*
+            효과에 대한 참조 URL
+            https://www.w3schools.com/jquery/eff_animate.asp
+            */
+            $('#start').click(function() {
+                $('div').animate({height:'300px', opacity:'0.4'}, 'slow');
+                $('div').animate({width:'300px', opacity:'0.8'}, 'slow');
+                $('div').animate({height:'100px', opacity:'0.4'}, 'slow');
+                $('div').animate({width:'100px', opacity:'0.8'}, 'slow');
+            });
+        });
+    </script>
+    <style>
+        div{
+            width: 70px; height: 70px; position: absolute;
+            top: 100px; left: 50px; background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>animate() / stop() 메소드</h2>
+	
+	<button id="go">Go</button>
+	<button id="stop">Stop</button>
+	<button id="back">Back</button>
+	<button id="start">Animation Start</button>
+	
+	<div>나는<br/>움직인다</div>
+</body>
+</html>

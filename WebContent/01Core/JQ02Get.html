@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ02Get.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+    /*
+    jQuery객체가 아닌 자바스크립트의 DOM객체를 선택한다.
+    즉 자바스크립트와 혼용해서 사용해야할 때 유용하게 사용된다.
+    */
+    $(document).ready(function(){
+       $('#naver').click(function() {
+          alert($('#naver').get(0).href); 
+       });
+    });
+
+    /*
+    위 jQuery코드를 javascript로 구현하면 아래와 같다.
+    get()메소드는 getElementById()와 같은 역할을 한다.
+    */
+    function daumClick() {
+        var daum = document.getElementById("daum");
+        alert(daum.href);
+    }
+    </script>
+</head>
+<body> 
+    <h2>get()메소드</h2>
+	<ul>
+		<li>
+			<a href="#http://www.naver.com" id="naver">
+				네이버
+			</a>
+		</li>
+		<li>
+			<a href="#Daum" alt="Daum입니다." id="daum"	
+				onclick="daumClick();">
+				다음
+			</a>
+		</li>
+	</ul>
+</body>
+</html>
