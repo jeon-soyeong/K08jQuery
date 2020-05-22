@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ17Append.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(function() {
+            $('#btn').click(function() {
+                var row = $('#row').val();
+                var col = $('#col').val();
+
+                var table = "<table border='1'>";
+                    for(var i = 1; i <= row; i++){
+                        table += "<tr>";
+                            for(var j = 1; j <= col; j++){
+                                table += "<td>" + i + "행" + j + "열</td>";
+                            }
+                        table += "<tr/>";
+                    }
+                    table += "</table>"
+
+                    /*
+                    append()
+                        : 기존 컨텐츠 뒤에 새로운 내용을 추가할 때 사용함.
+                        방식) 선택자.append(컨텐츠)
+                    prependTo()
+                        : 기존 컨텐츠 앞에 새로운 내요을 추가할 때 사용함.
+                        방식) $(컨텐츠).prependTo(선택자)
+                    html()
+                        : 기존의 컨텐츠를 제거한 후 새로운 내용을 추가함.
+                    */
+                    $('#appendDisplay').append(table);
+
+                    //$(table).prependTo('#appendDisplay');
+
+                    //$('#appendDisplay').html(table);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h2>append() 메소드</h2>
+	
+	<input type="number" id="row" value="2" />행
+	<input type="number" id="col" value="2" />열
+	<input type="button" id="btn" value="동적테이블추가" />
+	<div id="appendDisplay">
+        
+        여기에 생성됨
+
+	</div>	
+</body>
+</html>

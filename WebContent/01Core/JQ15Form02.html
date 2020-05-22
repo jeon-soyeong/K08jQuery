@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JQ15Form02.html</title>
+    <script src="../common/jquery/jquery-3.5.1.js"></script>
+    <script>
+        $(function() {
+
+            /*
+                태그선택자 input과 :input의 차이점
+                    input => input태그만 선택한다.
+                    :input => input태그를 포함하여 문서내의 모든
+                    폼엘리먼트를 선택한다. 즉, textarea, select가 포함된다.
+            */
+            $('#btn1').click(function() {
+                alert("input의 갯수는:"+$('input').length);
+                alert("문서내 모든 폼요소의 갯수는" + $(':input').length)
+            });
+
+            /*
+            태그명과 속성값 가져오기
+            -태그명 : 선택자.get(0).getName 혹은 선택자.tagName으로
+                가져올 수 있다.
+            -속성값 : 선택자.attr(속성명) 으로 가져온다.
+
+            ※this의 사용법 : this 혹은 $(this) 둘다 사용가능함.
+            */
+            $('#btn2').click(function() {
+                var str = "";
+                $(':input').each(function() {
+                    str += "태그명:" + this.tagName;
+                    str += "\n";
+                    str += "Typed의속성값:" + $(this).attr('type');
+                    str += "\n"; 
+                });
+                alert(str);
+            });
+            
+            /*
+            val() : 해당 엘리먼트의 value속성값을 가져오거나 설정할 때 사용한다.
+            */
+            $('#btn3').click(function() {
+                $(':text').css('backgroundColor', 'silver');
+                //val()을 이용해서 값을 얻어온다.
+                alert("#text1의 value값" + $('#text1').val());
+
+                var txtVal = $('#text2').val($('text1').val());
+                //text1의 값을 얻어온 후 text2에 설정한다.
+                alert("txt1의 내용이 txt2로 복사됨");
+            });
+
+            //이메일 select선택시 도메인 부분 채워주기
+            $('#selectEmail').change(function() {
+                //alert("이메일 선택됨");
+                //option태그 사이의 텍스트를 읽어온다.
+                var text = $('#selectEmail option:selected').text();
+                //value속성에 지정된 값을 읽어온다.
+                var value = $('#selectEmail option:selected').val();
+                //alert("선택한 항목의 text:"+text+",value:"+value);
+
+
+                if(value==''){//선택하세요를 선택
+                    $('#email2').attr('readonly', true);
+                    $('#email2').val('');
+                }
+                else if(value=='direct'){//직접입력을 선택
+                    $('#email2').attr('readonly', false);
+                    $('#email2').val('');
+                }
+                else{//그외 포털 도메인 선택
+                    $('#email2').attr('readonly', true);
+                    //위에서 읽어온 값을 도메인 부분에 입력한다.
+                    $('#email2').val(value);
+                }
+            });
+
+            
+            //조건1
+            $('#pwd1').keyup(function() {
+                //input태그의 value속성을 빈값으로 만들어준다.
+                $('#pwd2').val("");
+                $('#msg').text('');
+
+            });
+            //조건2
+            /*
+                    var compareStr1 = $('#pwd1').val();
+                    var compareStr2 = $(this).val();
+                    if(compareStr1==compareStr2)
+                     $('#msg').html('<b style="color:red;">암호가 일치합니다.</b>')
+            */
+            $('#pwd2').keyup(function() {
+                if($('#pwd1').val() == $('#pwd2').val()){
+                    //일치하면 붉은색 텍스트
+                    $('#msg').html('<b>암호가 일치합니다.</b>').css("color", "red");
+                }
+                else{
+                    //일치하지 않으면 검은색 텍스트
+                    $('#msg').html('<b>암호가 틀립니다.</b>').css("color", "black");
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <h2>form요소와 jQuery</h2>
+	
+	<input type="text" name="text1" id="text1" 
+		value="노트북" />
+	<br/>
+	<input type="text" name="text2" id="text2" value="" />
+	<br/>
+	<input type="password" name="passwd" />
+	<br/>
+	<textarea name="textarea" cols="50" rows="10">나는개발자다</textarea>
+	<br/>
+	<select name="select">
+		<option value="A">에이</option>
+		<option value="B">비이</option>
+		<option value="C">씨이</option>
+	</select>
+	<br/>
+	<input type="checkbox" name="checkbox" />나는체크박스다
+	<br/>
+	<input type="hidden" value="hidden" />여긴hidden박스
+	<br/>
+	<input type="submit" value="submit버튼" />
+	<br/>
+	
+	<div style="margin-top:50px;">
+		<button id="btn1">버튼1</button>
+		<button id="btn2">버튼2</button>
+		<button id="btn3">버튼3</button>
+	</div>
+    
+    <!-- 
+        연습문제] 비밀번호 확인기능 구현하기 자바스크립트 value keyup
+        1.암호1을 입력할 때 무조건 암호2부분을 비워준다. val() 
+        2.암호2 부분을 입력할 때 암호가 일치하게 되면
+        <span id="msg">부분의 텍스트를 빨간색으로 표현한다.
+        3.암호가 틀렸을 때 -> 암호가 틀립니다.(검은색) html()
+        4.암호가 일치할 때 -> 암호가 일치합니다.(빨간색)
+        해당 조건을 만족하는 jQuery코드를 작성하시오.
+    -->
+	
+	<h3>비밀번호 확인기능</h3>
+	<span id="msg"></span>
+	<br/>
+	암호입력 : <input type="password" id="pwd1" />
+	<br/>
+	암호확인 : <input type="password" id="pwd2" />
+	
+	
+	<h3>선택상자에서 선택된값을 텍스트상자에 출력하기</h3>
+	이메일 : <input type="text" id="email1" style="width:100px;"/>
+	@ <input type="text" id="email2" style="width:150px;" readonly/>
+	<select id="selectEmail">
+        <option value="">--선택하세요--</option>
+        <option value="direct">직접입력</option>
+		<option value="naver.com">네이버</option>
+		<option value="hanmail.net">다음(한메일)</option>
+		<option value="gmail.com">구글(gmail)</option>
+	</select>
+	
+	<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
+</html>
